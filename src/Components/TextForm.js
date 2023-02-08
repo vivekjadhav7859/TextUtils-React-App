@@ -37,8 +37,8 @@ export default function TextForm(props) {
     console.log("copy button clicked")
     var text = document.getElementById("myBox")
     text.select();
-    // text.setSelectRange(0, 9999);
     navigator.clipboard.writeText(text.value);
+    document.getSelection().removeAllRanges();
     props.showAlert("Copied to clipboard"," success");
 
   }
@@ -58,19 +58,19 @@ export default function TextForm(props) {
             rows="10"
           ></textarea>
         </div>
-        <button className="btn btn-outline-primary mx-2" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-outline-primary mx-2 my-2" onClick={handleUpClick}>
           Convert to UPPERCASE
         </button>
-        <button className="btn btn-outline-success mx-2" onClick={handleLoClick}>
+        <button disabled={text.length===0} className="btn btn-outline-success mx-2 my-2" onClick={handleLoClick}>
           Convert to lowercase
         </button>
-        <button className="btn btn-outline-danger mx-2" onClick={handleClrClick}>
+        <button disabled={text.length===0} className="btn btn-outline-danger mx-2 my-2" onClick={handleClrClick}>
           Clear
         </button>
-        <button className="btn btn-outline-dark mx-2" onClick={handleCopy}>
+        <button disabled={text.length===0} className="btn btn-outline-dark mx-2 my-2" onClick={handleCopy}>
           Copy
         </button>
-        <button className="btn btn-outline-primary mx-2" onClick={handleExtraSpaces}>
+        <button disabled={text.length===0} className="btn btn-outline-primary mx-2 my-2" onClick={handleExtraSpaces}>
           Handle Extra Spaces
         </button>
       </div>
@@ -79,17 +79,15 @@ export default function TextForm(props) {
         <h2>The summary</h2>
         <p>
           <b>
-            {text.split(" ").length} words and {text.length} letters
+            {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} letters
           </b>
         </p>
         <p>
-          <b>{0.008 * text.split(" ").length} Minutes Read</b>
+          <b>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes Read</b>
         </p>
         <div id="preview" className="container">
-          {/* <p> */}
             <h2>Preview</h2>
-          {/* </p> */}
-          {text.length>0?text:"Enter Some text To preview"}
+          {text.length>0?text:"Nothing To preview"}
         </div>
       </div>
     </>

@@ -1,29 +1,17 @@
 import React, { useState} from "react";
 
-export default function About() {
-  const [myStyle, setMyStyle] = useState({
-    color: "black",
-    backgroundColor: "white",
-  });
-  const[btnText,setText] = useState('Enable Dark Mode')
+export default function About(props) {
+  // const [myStyle, setMyStyle] = useState({
+  //   color: "black",
+  //   backgroundColor: "white",
+  // });
+  let myStyle ={
+    color : props.mode === 'dark'?'white':'black',
+    backgroundColor: props.mode =='dark'?'black':'white',
+    
+  }
 
-  const toggleStyle = () => {
-    if (myStyle.color === "white") {
-      setMyStyle({
-        color: "black",
-        backgroundColor: "white",
 
-      });
-      setText('Enable Dark Mode')
-    }else{
-      setMyStyle({
-        color: "white",
-        backgroundColor: "black",
-        border : '1px solid white'
-      });
-      setText('Enable Light Mode')
-    }
-  };
   return (
     <div className="container" style={myStyle}>
       <h1 className="my-3">About TextUtils</h1>
@@ -39,7 +27,7 @@ export default function About() {
               aria-expanded="false"
               aria-controls="flush-collapseOne"
             >
-              Accordion Item #1
+              <strong>Analyze Your Text</strong>
             </button>
           </h2>
           <div
@@ -66,7 +54,7 @@ export default function About() {
               aria-expanded="false"
               aria-controls="flush-collapseTwo"
             >
-              Accordion Item #2
+              <strong>Free to use</strong>
             </button>
           </h2>
           <div
@@ -94,7 +82,7 @@ export default function About() {
               aria-expanded="false"
               aria-controls="flush-collapseThree"
             >
-              Accordion Item #3
+              <strong>Browser Compatible</strong>
             </button>
           </h2>
           <div
@@ -114,9 +102,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      <button onClick={toggleStyle} type="button" className="btn btn-primary my-4">
-        {btnText}
-      </button>
+
     </div>
   );
 }

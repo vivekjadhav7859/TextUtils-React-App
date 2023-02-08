@@ -42,7 +42,7 @@ function App() {
           <div className="container my-3">
             <Switch>
               <Route exact path="/about" component={withRouter(About)}>
-                <About />
+                <About mode={mode} />
               </Route>
               <Route exact path="/">
                 <TextForm
