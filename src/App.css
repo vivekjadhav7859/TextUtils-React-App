@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+#id{
+  justify-content: center;
+  text-align: center;
+  background-color: black;
+  color: aliceblue;
+}
