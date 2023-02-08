@@ -34,11 +34,7 @@ export default function TextForm(props) {
   }
 
   const handleCopy = ()=>{
-    console.log("copy button clicked")
-    var text = document.getElementById("myBox")
-    text.select();
-    navigator.clipboard.writeText(text.value);
-    document.getSelection().removeAllRanges();
+    navigator.clipboard.writeText(text);
     props.showAlert("Copied to clipboard"," success");
 
   }
@@ -79,7 +75,7 @@ export default function TextForm(props) {
         <h2>The summary</h2>
         <p>
           <b>
-            {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} letters
+            {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} letters
           </b>
         </p>
         <p>
